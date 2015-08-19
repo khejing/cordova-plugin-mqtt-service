@@ -1,8 +1,8 @@
 function subscribe(){
 	cordova.exec(function(){
 		console.log("test has been called success");
-	}, function(){
-		console.log("error happened");
+	}, function(e){
+		console.log("error happened", e);
 	}, "MQTTService", "test", []);
 }
 
