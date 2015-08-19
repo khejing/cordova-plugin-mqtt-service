@@ -1,4 +1,4 @@
-package com.yang.eto1.CordovaPlugin.MQTTService;
+package com.yang.eto1.CordovaPlugin;
 
 import android.util.Log;
 
