@@ -10,7 +10,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
 public class MQTTService extends CordovaPlugin{
-	public void test(){
+	public boolean test(){
 		Log.i("MQTTService", "test has been called");
+		return true;
 	}
 }
