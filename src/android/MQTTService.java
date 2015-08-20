@@ -13,7 +13,7 @@ import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
 public class MQTTService extends CordovaPlugin{
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext){
-		if("test".equal(action)){
+		if("test".equals(action)){
 			Log.i("MQTTService", "test has been called");
 			return true;
 		}
