@@ -19,6 +19,8 @@
 		<source-file src="src/android/org.eclipse.paho.android.service-1.0.2.jar" target-dir="libs" />
 		<source-file src="src/android/org.eclipse.paho.client.mqttv3-1.0.2.jar" target-dir="libs" />
 
-        <js-module src="www/mqtt-service.js" name="MQTTService" />
+        <js-module src="www/mqtt-service.js" name="MQTTService">
+		    <runs />
+		</js-module>
     </platform>
 </plugin>
