@@ -17,5 +17,6 @@ public class MQTTService extends CordovaPlugin{
 			Log.i("MQTTService", "test has been called");
 			return true;
 		}
+		return false;
 	}
 }
