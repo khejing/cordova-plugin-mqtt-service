@@ -14,7 +14,7 @@ import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 public class MQTTService extends CordovaPlugin{
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext){
 		if("test".equals(action)){
-			Log.i("MQTTService", action+" has been called");
+			Log.i("MQTTService", action+" has been called twice?");
 			return true;
 		}
 		return false;
