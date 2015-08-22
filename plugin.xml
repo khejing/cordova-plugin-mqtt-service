@@ -14,8 +14,21 @@
                 <param name="android-package" value="com.yang.eto1.CordovaPlugin.MQTTService"/>
             </feature>
         </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+			<!-- Permissions the Application Requires -->
+			<uses-permission android:name="android.permission.WAKE_LOCK" />
+			<uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+		    <service android:name="org.eclipse.paho.android.service.MqttService" />
+        </config-file>
 
         <source-file src="src/android/MQTTService.java" target-dir="src/com/yang/eto1/CordovaPlugin" />
+        <source-file src="src/android/ActionListener.java" target-dir="src/com/yang/eto1/CordovaPlugin" />
+        <source-file src="src/android/MqttCallbackHandler.java" target-dir="src/com/yang/eto1/CordovaPlugin" />
+		<source-file src="src/android/MqttTraceCallback.java" target-dir="src/com/yang/eto1/CordovaPlugin" />
 		<source-file src="src/android/org.eclipse.paho.android.service-1.0.2.jar" target-dir="libs" />
 		<source-file src="src/android/org.eclipse.paho.client.mqttv3-1.0.2.jar" target-dir="libs" />
 

@@ -1,9 +1,22 @@
-function subscribe(){
-	cordova.exec(function(){
-		console.log("test has been called success");
-	}, function(e){
-		console.log("error happened", e);
-	}, "MQTTService", "test", []);
+var mqttClient = {
+	connect: function(server, opts, successCb, errorCb){
+    	cordova.exec(successCb, errorCb, "MQTTService", "connect", [server, opts]);
+	},
+	onConnectionLost: function(cb){
+		cordova.exec(cb, null, "MQTTService", "onConnectionLost", []);
+	}
+	onMessage: function(messageCb){
+		cordova.exec(messageCb, null, "MQTTService", "onMessage", []);
+	},
+	subscribe: function(topic){
+		cordova.exec(null, null, "MQTTService", "subscribe", [topic])
+	},
+	publish: function(topic, msg){
+		cordova.exec(null, null, "MQTTService", "publish", [topic, msg])
+	},
+	end: function(){
+		cordova.exec(null, null, "MQTTService", "end", []);
+	}
 }
 
-exports.subscribe = subscribe;
+module.exports = mqttClient;
