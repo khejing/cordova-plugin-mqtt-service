@@ -6,6 +6,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONException;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -14,10 +15,19 @@ import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
 public class MQTTService extends CordovaPlugin{
 	private void connect(JSONArray args, CallbackContext callbackContext){
-		String serverURI = args.getString(0);
-		JSONObject opts = args.getJSONObject(1);
-		String clientId = opts.getString("clientId");
-		boolean cleanSession = opts.getBoolean("clean");
+		String serverURI, clientId;
+		boolean cleanSession;
+		try{
+			serverURI = args.getString(0);
+			JSONObject opts = args.getJSONObject(1);
+			clientId = opts.getString("clientId");
+			cleanSession = opts.getBoolean("clean");			
+		}catch(JSONException e){
+            Log.e(this.getClass().getCanonicalName(), "JSONException Occured");
+			callbackContext.error("JSON error");
+			return;
+		}
+		
 		MqttAndroidClient client = new MqttAndroidClient(cordova.getActivity(), serverURI, clientId);
 		client.setCallback(new MqttCallbackHandler());
         client.setTraceCallback(new MqttTraceCallback());
