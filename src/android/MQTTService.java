@@ -23,8 +23,9 @@ public class MQTTService extends CordovaPlugin{
         client.setTraceCallback(new MqttTraceCallback());
 		MqttConnectOptions conOpt = new MqttConnectOptions();
 		conOpt.setCleanSession(cleanSession);
+
         try {
-            client.connect(conOpt, callbackContext, callback);
+            client.connect(conOpt, callbackContext, new ActionListener());
 			Log.i("MQTTService", "mqtt connect success return");
         } catch (MqttException e) {
             Log.e(this.getClass().getCanonicalName(), "MqttException Occured", e);
