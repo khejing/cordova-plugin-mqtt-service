@@ -13,6 +13,6 @@ class ActionListener implements IMqttActionListener {
 	
 	public void onFailure(IMqttToken asyncActionToken, Throwable exception){
 		CallbackContext callbackContext = (CallbackContext)asyncActionToken.getUserContext();
-		callbackContext.error();		
+		callbackContext.error("async method failed");		
 	}
 }

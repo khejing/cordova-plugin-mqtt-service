@@ -28,7 +28,7 @@ public class MQTTService extends CordovaPlugin{
 			Log.i("MQTTService", "mqtt connect success return");
         } catch (MqttException e) {
             Log.e(this.getClass().getCanonicalName(), "MqttException Occured", e);
-			callbackContext.error();
+			callbackContext.error(e.toString());
         }
 	}
 
