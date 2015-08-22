@@ -4,7 +4,7 @@ var mqttClient = {
 	},
 	onConnectionLost: function(cb){
 		cordova.exec(cb, null, "MQTTService", "onConnectionLost", []);
-	}
+	},
 	onMessage: function(messageCb){
 		cordova.exec(messageCb, null, "MQTTService", "onMessage", []);
 	},
