@@ -16,6 +16,8 @@ import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
 public class MQTTService extends CordovaPlugin{
 	private MqttAndroidClient client;
+	private MqttCallbackHandler callback = new MqttCallbackHandler();
+
 	private void connect(JSONArray args, CallbackContext callbackContext){
 		String serverURI, clientId;
 		boolean cleanSession;
@@ -31,7 +33,7 @@ public class MQTTService extends CordovaPlugin{
 		}
 
 		client = new MqttAndroidClient(cordova.getActivity(), serverURI, clientId, new MemoryPersistence());
-		client.setCallback(new MqttCallbackHandler());
+		client.setCallback(callback);
         client.setTraceCallback(new MqttTraceCallback());
 		MqttConnectOptions conOpt = new MqttConnectOptions();
 		conOpt.setCleanSession(cleanSession);
@@ -50,6 +52,7 @@ public class MQTTService extends CordovaPlugin{
 	}
 
 	private void onMessage(CallbackContext callbackContext){
+		callback.setMsgCallbackContext(callbackContext);
 		Log.i("MQTTService", "mqtt onMessage success");
 	}
 
@@ -97,6 +100,11 @@ public class MQTTService extends CordovaPlugin{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void onResume(boolean multitasking){
+		client.registerResources(cordova.getActivity());
 	}
 
 	@Override
