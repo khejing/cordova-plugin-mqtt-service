@@ -9,7 +9,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class MqttCallbackHandler implements MqttCallback {
 	private CallbackContext msgCallback;
 
-	protected setMsgCallbackContext(CallbackContext callbackContext){
+	protected void setMsgCallbackContext(CallbackContext callbackContext){
 		msgCallback = callbackContext;
 	}
 
