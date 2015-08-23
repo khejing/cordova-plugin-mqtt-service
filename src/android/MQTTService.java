@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.json.JSONException;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
@@ -27,8 +28,8 @@ public class MQTTService extends CordovaPlugin{
 			callbackContext.error("JSON error");
 			return;
 		}
-		
-		MqttAndroidClient client = new MqttAndroidClient(cordova.getActivity(), serverURI, clientId);
+
+		MqttAndroidClient client = new MqttAndroidClient(cordova.getActivity(), serverURI, clientId, new MemoryPersistence());
 		client.setCallback(new MqttCallbackHandler());
         client.setTraceCallback(new MqttTraceCallback());
 		MqttConnectOptions conOpt = new MqttConnectOptions();
@@ -46,11 +47,11 @@ public class MQTTService extends CordovaPlugin{
 	private void onConnectionLost(CallbackContext callbackContext){
 		Log.i("MQTTService", "mqtt onConnectionLost success");
 	}
-	
+
 	private void onMessage(CallbackContext callbackContext){
 		Log.i("MQTTService", "mqtt onMessage success");
 	}
-	
+
 	private void subscribe(JSONArray args){
 		Log.i("MQTTService", "mqtt subscribe success");
 	}
