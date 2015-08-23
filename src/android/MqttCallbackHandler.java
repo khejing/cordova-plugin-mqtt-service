@@ -25,7 +25,7 @@ public class MqttCallbackHandler implements MqttCallback {
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
 	    Log.i("MQTTService", "Java got message "+message.getPayload()+" from topic "+topic);
-		msgCallback.suceess(message.getPayload());
+		msgCallback.success(message.getPayload());
     }
 
     @Override
