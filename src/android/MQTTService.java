@@ -54,7 +54,7 @@ public class MQTTService extends CordovaPlugin{
 	}
 
 	private void subscribe(JSONArray args){
-		String topic;
+		String topic = null;
 		try {
             topic = args.getString(0);
             client.subscribe(topic, 0);
