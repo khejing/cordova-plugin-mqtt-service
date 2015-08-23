@@ -1,5 +1,7 @@
 package com.yang.eto1.CordovaPlugin;
 
+import android.util.Log;
+
 import org.apache.cordova.CallbackContext;
 
 import org.eclipse.paho.client.mqttv3.MqttCallback;
