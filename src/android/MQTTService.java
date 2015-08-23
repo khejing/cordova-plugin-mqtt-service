@@ -54,7 +54,16 @@ public class MQTTService extends CordovaPlugin{
 	}
 
 	private void subscribe(JSONArray args){
-		Log.i("MQTTService", "mqtt subscribe success");
+		String topic;
+		try {
+            topic = args.getString(0);
+            client.subscribe(topic, 0);
+            Log.i("MQTTService", "mqtt subscribe success");
+        }catch (MqttSecurityException e) {
+            Log.e(this.getClass().getCanonicalName(), "Failed to subscribe to" + topic, e);
+        }catch (MqttException e) {
+            Log.e(this.getClass().getCanonicalName(), "Failed to subscribe to" + topic, e);
+        }
 	}
 
 	private void publish(JSONArray args){
